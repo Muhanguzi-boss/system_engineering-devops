@@ -1,6 +1,12 @@
+
 #!/usr/bin/env bash
-# This script lists files in the current directory, showing only the part after the first dash
-for file in *-*
+# This script lists non-hidden entries and prints only the part after the first dash if present
+for file in *
 do
-  echo "${file#*-}"
+  [ -e "$file" ] || continue
+  if [[ "$file" == *-* ]]; then
+    echo "${file#*-}"
+  else
+    echo "$file"
+  fi
 done
